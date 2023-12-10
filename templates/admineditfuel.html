@@ -1,0 +1,33 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: black;
+        color:white;
+    }
+</style>
+<center>
+<form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}     
+    <table style="margin: 50px;" align="center" >
+            <br><br><h2  align="center" > <b>Fuel</b></h2>
+           {% for d in data %}
+            <tr>
+                <td><b>Fuel :</b></td>
+                <td><input type="text" name="txtFuel" value={{d.1}} required="" pattern="[a-zA-Z ]+" class="form-control"/></td>
+            </tr>
+            <tr>
+                <td><b>Rate :</b></td>
+                <td><input type="text" name="txtRate" min="0" value={{d.2}} required="" pattern="[0-9.]{1,6}" class="form-control"/></td>
+            </tr>
+            {% endfor %}
+             <tr>
+                 <td colspan="2" align="center"><input type="submit" name="submit" value="Submit" class="btn btn-primary"/></td>
+            </tr>
+    </table><hr>
+    </form>
+</center>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'pumpbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: black;
+        color:white;
+    }
+</style>
+<center>
+<form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}     
+    <table style="margin: 50px;" align="center" >
+            <br><br><h2 align="center"> <b>Stock</b></h2>
+            <tr>
+                <td><b>Select fuel</b></td>
+                <td><select name="fuel" class="form-control">
+                    {% for d in fuel %}
+                    <option value="{{d.0}}">{{d.1}}</option>
+                    {% endfor %}
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Stock :</b></td>
+                <td><input type="number" name="txtRate" min="1" required="" class="form-control"/></td>
+            </tr>
+             <tr>
+                 <td colspan="2" align="center"><input type="submit" name="submit" value="Update" class="btn btn-primary"/></td>
+            </tr>
+    </table>
+    <hr>
+    <table border="0" style="margin:50px;"> 
+        <tr>
+            <th>FUEL</th>
+            <th>RATE</th>
+            <th>Stock</th>
+            <th></th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+           
+        </tr>
+        {% endfor %}
+    </table>
+        </form>
+
+   </center>
+{% endblock %}

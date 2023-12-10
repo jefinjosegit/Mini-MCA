@@ -1,0 +1,38 @@
+{% extends 'pumpbase.html' %}
+{% block content %}
+	<style>
+    td,th{
+        padding: 10px;
+    }
+     th{
+        background-color: black;
+        color:white;
+    }
+</style>
+
+<form method="POST" enctype="multipart/form-data">
+   
+    <br>
+            <h2  align="center" >Request Details</h2><br>
+    <table border="0" style="margin:10px 50px;"> 
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>ADDRESS</th>
+            <th>CONTACT</th>
+            <th colspan="2">EMAIL</th>
+        </tr>
+       {% for d in data %}
+       <tr>	
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td><a href="/allocate?id={{d.0}}">Allocate</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+            </form>
+
+{% endblock %}

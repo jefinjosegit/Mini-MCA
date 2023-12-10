@@ -1,0 +1,40 @@
+{% extends 'dboybase.html' %} {% block content %}
+<style>
+	td,
+	th {
+		padding: 10px;
+	}
+	th {
+		background-color: black;
+		color: white;
+	}
+</style>
+
+<form method="POST" enctype="multipart/form-data">
+	<br />
+	<h2 align="center">Allocation Details</h2>
+	<br />
+
+	<table border="0" style="margin: 10px 50px">
+		<tr></tr>
+		<tr>
+			<th>DATE</th>
+			<th>CUSTOMER</th>
+			<th>PHONE</th>
+			<th>REQUEST</th>
+			<th colspan="2">STATUS</th>
+		</tr>
+		{% for d in data %}
+		<tr>
+			<td>{{d.3}}</td>
+			<td>{{d.11}}</td>
+			<td>{{d.16}}</td>
+			<td>{{d.4}}</td>
+			{% if d.3 == "Paid" %}
+			<td><a href="/delivered?id={{d.4}}">Delivered</a></td>
+			{% endif %} {% endfor %}
+		</tr>
+	</table>
+</form>
+
+{% endblock %}

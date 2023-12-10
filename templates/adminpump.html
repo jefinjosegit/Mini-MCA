@@ -1,0 +1,55 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+	<style>
+    td,th{
+        padding: 10px;
+    }
+     th{
+        background-color: black;
+        color:white;
+    }
+
+</style>
+
+
+
+<form   method="POST" enctype="multipart/form-data">
+    
+     
+    <br>
+            <h2  align="center" >Pump Details</h2><br>
+           
+      
+    <table border="0" style="margin:10px 50px;"> 
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>LICENSE</th>
+                <th>ADDRESS</th>
+                <th>PLACE</th>
+                <th>PIN</th>
+                <th>CONTACT</th>
+                <th>EMAIL</th>
+            </tr>
+           {% for d in data %}
+           <tr>
+                
+                <td>{{d.0}}</td>
+                <td>{{d.1}}</td>
+                <td>{{d.2}}</td>
+                <td>{{d.3}}</td>
+                <td>{{d.4}}</td>
+                <td>{{d.5}}</td>
+                <td>{{d.6}}</td>
+                <td>{{d.7}}</td>
+                {% if d.14 == "0" %}
+                    <td><a href="/adminupdateuser?id={{d.6}}&status=1&url=adminpump">Approve |
+                        <a href="/adminupdateuser?id={{d.6}}&status=-1&url=adminpump">Reject</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+            </form>
+
+{% endblock %}
+ 
